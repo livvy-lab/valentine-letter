@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine Letter</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffd6e0, #ff8fb1);
+        font-family: "Patrick Hand", "Poppins", sans-serif;
+        overflow: hidden;
+      }
+
+      /* Envelope View */
+      .envelope {
+        width: 520px;
+        height: 340px;
+        background: #fffafc;
+        border-radius: 16px;
+        position: relative;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        transition: transform 0.4s ease;
+      }
+
+      .envelope:hover {
+        transform: scale(1.04);
+      }
+
+      /* Flap */
+      .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffe1ea;
+        clip-path: polygon(0 0, 100% 0, 50% 55%);
+        border-radius: 16px 16px 0 0;
+        z-index: 2;
+      }
+
+      /* Postage Stamp */
+      .stamp {
+        position: absolute;
+        left: 50%;
+        top: 52%;
+        transform: translate(-50%, -50%);
+        width: 78px;
+        height: 78px;
+        background: #e46b8a;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.1rem;
+        color: white;
+        z-index: 3;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+
+        /* Stamp Border */
+        background-image: radial-gradient(
+            circle at 6px 6px,
+            transparent 4px,
+            #e46b8a 4px
+          );
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+
+        outline: 2px dashed rgba(255, 255, 255, 0.7);
+        outline-offset: -6px;
+      }
+
+      /* Address */
+      .address {
+        position: absolute;
+        left: 35px;
+        bottom: 45px;
+        font-size: 1rem;
+        color: #777;
+        line-height: 1.5;
+        z-index: 1;
+      }
+
+      /* Instruction */
+      .open-text {
+        position: absolute;
+        top: 18px;
+        width: 100%;
+        text-align: center;
+        font-size: 1rem;
+        color: #999;
+        z-index: 3;
+      }
+
+      /* Letter Container */
+      .letter-container {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 214, 224, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease;
+        z-index: 10;
+      }
+
+      .letter-container.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .letter {
+  background-color: #f5e0b9;
+
+  /* Texture overlay */
+  background-image: url("texture.jpg"),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.08));
+  background-size: cover, 100% 100%;
+  background-repeat: repeat, no-repeat;
+  background-blend-mode: multiply;
+
+  border-radius: 10px;
+  position: relative;
+
+  width: 520px;
+  max-height: 85vh;
+  padding: 50px 45px;
+
+  overflow-y: auto;
+}
+
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(40px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Letter Content */
+      .letter h1 {
+        color: #b25970;
+        margin-bottom: 18px;
+        text-align: center;
+      }
+
+      .letter p {
+        line-height: 1.7;
+        font-size: 1.1rem;
+        color: #444;
+        margin-bottom: 16px;
+      }
+
+      .signature {
+  margin-top: 30px;
+  text-align: right;
+  font-style: italic;
+  color: #382f32;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+
+      /* Close Button */
+      .close-btn {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: #b25970;
+        color: white;
+        border: none;
+        padding: 9px 16px;
+        border-radius: 22px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      .close-btn:hover {
+        background: #b25970;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Envelope -->
+    <div class="envelope" id="envelope">
+      <div class="open-text">Click to Open <3</div>
+
+      <div class="flap"></div>
+
+      <div class="address">
+        To: My Angel Baby<br />
+
+      </div>
+
+      <div class="stamp">
+        <svg
+          viewBox="0 0 24 24"
+          width="36"
+          height="36"
+          fill="white"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 21s-6.7-4.4-9.5-7.3C.6 11.8.4 8.9 2.3 7 4.2 5.1 7.1 5.3 9 7.2L12 10.2l3-3c1.9-1.9 4.8-2.1 6.7-.2 1.9 1.9 1.7 4.8-.2 6.7C18.7 16.6 12 21 12 21z"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Letter View -->
+    <div class="letter-container" id="letterContainer">
+      <div class="letter">
+        <button class="close-btn" id="closeBtn">Close</button>
+
+        <h1>My Sweet Angel Baby,</h1>
+          
+          
+        <div class="letter-content">
+            <p>
+              I'm stealing this from Instagram but it's so accurate; hanging out with you on halloween was like 
+              listening to a song for the first time and knowing it was going to be my favorite.           
+            </p>
+          
+            <p>
+              I'm really thankful I get to be your girlfriend and get to know you. Everyday I find more reasons to fall in love with you and appreciate you.
+              You're funny, smart, and a reminder for me to not take life so seriously. You've taught me to appreciate the unseriousness of life as someone who can lose
+              themselves going too deep into it. You ground me.
+            </p>
+          
+            <p>
+              I love how deeply you cherish the people around you. Whether that's at IEEE-NSM and valuing the small talk from your friends or
+              going to research lab and going into in-depth discussions about AI and math. I love that I get to hear about your day and your thoughts
+              about all the interactions you experience. I hope I get to hear about them for the rest of my life!
+            </p>
+          
+            <p>
+              Thank you for allowing me to a part of your life and I know it's a delayed one month celebration, but here's to us and...
+            </p>
+          
+            <div
+              class="valentine-question"
+              style="text-align: center; margin: 30px 0"
+            >
+              <h2 style="color: #b25970">Will you be my Valentine? </h2>
+          
+              <div style="margin-top: 15px; font-size: 1.05rem">
+                <label style="margin: 0 15px; cursor: pointer">
+                  <input type="checkbox" id="yesCheck" style="margin-right: 6px" />
+                  Yes (right answer)
+                </label>
+          
+                <label style="margin: 0 15px; cursor: pointer">
+                  <input
+                    type="checkbox"
+                    id="noCheck"
+                    style="margin-right: 6px; cursor: pointer"
+                  />
+                  No (wrong answer)
+                </label>
+              </div>
+          
+              <p id="responseText" style="margin-top: 15px; font-weight: 500"></p>
+
+              <iframe
+              class="spotify-player"
+              src="https://open.spotify.com/embed/track/2DIrLNg6pDSi1VlpuhfhHd?si=c4ecda95560e4ef8"
+              width="300"
+              height="80"
+              frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+            </iframe>
+            </div>
+          </div>
+          <div class="signature">Mwah,<br /> Ur president always</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const envelope = document.getElementById("envelope");
+      const letterContainer = document.getElementById("letterContainer");
+      const closeBtn = document.getElementById("closeBtn");
+
+      const yesCheck = document.getElementById("yesCheck");
+      const noCheck = document.getElementById("noCheck");
+      const responseText = document.getElementById("responseText");
+
+      // Open letter
+      envelope.addEventListener("click", () => {
+        letterContainer.classList.add("open");
+      });
+
+      // Close letter
+      closeBtn.addEventListener("click", () => {
+        letterContainer.classList.remove("open");
+      });
+
+      // Yes checkbox logic
+      // Yes checkbox
+      yesCheck.addEventListener("change", () => {
+        if (yesCheck.checked) {
+          responseText.textContent =
+            "Yay!! You made the right decision";
+          responseText.style.color = "#b25970";
+        } else {
+          responseText.textContent = "";
+        }
+      });
+
+      // No checkbox (always blocked but clickable)
+      noCheck.addEventListener("click", (e) => {
+        e.preventDefault(); // stop checking
+
+        // Uncheck yes if needed (optional, keeps things clean)
+        yesCheck.checked = false;
+
+        responseText.textContent = "Try again";
+        responseText.style.color = "#888";
+      });
+    </script>
+  </body>
+</html>
